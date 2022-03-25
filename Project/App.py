@@ -1,15 +1,17 @@
 from dash import html
 from MainDash import app
+from Components.Pages.ActivePage import activePage
+from Components.NavBar.NavBar import navbar
 
 
 # Generate the app layout
 def generateAppLayout():
     return html.Div(
-        className="main_container",
-        children=html.Div(
-            className="layout",
-            children=[]
-        )
+        className="container",
+        children=[
+            navbar(),
+            activePage
+        ]
     )
 
 

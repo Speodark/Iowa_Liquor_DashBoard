@@ -1,4 +1,73 @@
 .navbar {
     background-color: #092b60;
-    border-bottom: 2px solid #0F3473;
+    border-bottom: 2px solid #0f3473;
+    display: flex;
+    color: #fff;
+
+    // Pretty much all the items in the header are skewd except the clock
+    &__item {
+        transform: skewX(-25deg);
+        P {
+            transform: skewX(25deg);
+        }
+    }
+
+    // The navbar links are the boxes with the pages names each time we switch a page the color will switch to the new one.
+    &__link {
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        padding: 0 2rem;
+        box-shadow: none;
+        transition: all 0.4s;
+        border-left: 1px solid #1777b6;
+
+        &:last-child {
+            border-right: 1px solid #1777b6;
+        }
+
+        &:link,
+        &:visited {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        &:hover,
+        &:active {
+            box-shadow: 0 -5rem 1rem rgba(#046db3, 90%) inset;
+        }
+    }
+
+    // The header is the name of the app which won't change through out all the pages.
+    &__header {
+        display: flex;
+        align-items: center;
+        width: auto;
+        padding: 0 3rem 0 3rem;
+        border-right: 2px solid #1777b6;
+        border-bottom: 2px solid #1777b6;
+        box-shadow: -0.6rem -0.6rem 1rem rgba(#046db3, 0.6) inset, 0.5rem 0.5rem 1rem rgba(#046db3, 0.6) inset;
+        transform: translateX(-0.8rem) skewX(-25deg);
+        P {
+            transform: translateX(-0.8rem) skewX(25deg);
+        }
+    }
+
+    // The icons container has the 5 boxes which are skewd and gives a nice vibe of space
+    &__icons-container {
+        display: flex;
+        align-items: end;
+        padding-bottom: 0.3rem;
+        margin-right: 0.7rem;
+        div {
+            display: inline-block;
+            width: 0.5rem;
+            height: 0.5rem;
+            transform: translateX(-0.7rem) skewX(-30deg);
+            background-color: #1777b6;
+            &:not(:last-child) {
+                margin-right: 0.3rem;
+            }
+        }
+    }
 }

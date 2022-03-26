@@ -23,6 +23,7 @@ ORDER: BASE + typography > general layout + grid > page layout > components
   box-sizing: inherit; }
 
 html {
+  font-family: "Nunito", sans-serif;
   font-size: 62.5%; }
   @media only screen and (max-width: 75em) {
     html {
@@ -41,9 +42,74 @@ body {
   display: grid;
   grid-template-rows: 5vh 95vh; }
 
+.heading-1, .heading-2, .heading-3, .heading-4 {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400; }
+
+.heading-1 {
+  font-size: 4.5rem;
+  line-height: 1; }
+
+.heading-2 {
+  font-size: 4rem;
+  font-style: italic;
+  line-height: 1; }
+
+.heading-3 {
+  font-size: 1.6rem;
+  text-transform: uppercase; }
+
+.heading-4 {
+  font-size: 1.9rem; }
+
 .navbar {
   background-color: #092b60;
-  border-bottom: 2px solid #0F3473; }
+  border-bottom: 2px solid #0f3473;
+  display: flex;
+  color: #fff; }
+  .navbar__item {
+    transform: skewX(-25deg); }
+    .navbar__item P {
+      transform: skewX(25deg); }
+  .navbar__link {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    box-shadow: none;
+    transition: all 0.4s;
+    border-left: 1px solid #1777b6; }
+    .navbar__link:last-child {
+      border-right: 1px solid #1777b6; }
+    .navbar__link:link, .navbar__link:visited {
+      color: #fff;
+      text-decoration: none; }
+    .navbar__link:hover, .navbar__link:active {
+      box-shadow: 0 -5rem 1rem #046db3 inset; }
+  .navbar__header {
+    display: flex;
+    align-items: center;
+    width: auto;
+    padding: 0 3rem 0 3rem;
+    border-right: 2px solid #1777b6;
+    border-bottom: 2px solid #1777b6;
+    box-shadow: -0.6rem -0.6rem 1rem rgba(4, 109, 179, 0.6) inset, 0.5rem 0.5rem 1rem rgba(4, 109, 179, 0.6) inset;
+    transform: translateX(-0.8rem) skewX(-25deg); }
+    .navbar__header P {
+      transform: translateX(-0.8rem) skewX(25deg); }
+  .navbar__icons-container {
+    display: flex;
+    align-items: end;
+    padding-bottom: 0.3rem;
+    margin-right: 0.7rem; }
+    .navbar__icons-container div {
+      display: inline-block;
+      width: 0.5rem;
+      height: 0.5rem;
+      transform: translateX(-0.7rem) skewX(-30deg);
+      background-color: #1777b6; }
+      .navbar__icons-container div:not(:last-child) {
+        margin-right: 0.3rem; }
 
 .sales {
   background: radial-gradient(#042a6b, #041c4a);

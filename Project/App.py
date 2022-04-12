@@ -1,7 +1,7 @@
-from dash import html
+from dash import html, dcc
 from MainDash import app
-from Components.Pages.ActivePage import activePage
-from Components.NavBar.NavBar import navbar
+from App_Components.Pages.ActivePage import activePage
+from App_Components.NavBar.NavBar import navbar
 
 
 # Generate the app layout
@@ -9,6 +9,7 @@ def generateAppLayout():
     return html.Div(
         className="container",
         children=[
+            dcc.Location(id='url', refresh=False),
             navbar(),
             activePage
         ]

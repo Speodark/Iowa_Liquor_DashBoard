@@ -1,6 +1,6 @@
 .navbar {
-    background-color: #092b60;
-    border-bottom: 2px solid #0f3473;
+    background-color: var(--header-bg-color);
+    border-bottom: 2px solid var(--border-color-1);
     display: flex;
     color: #fff;
 
@@ -12,18 +12,22 @@
         }
     }
 
+    &__links {
+        display: flex;
+    }
+
     // The navbar links are the boxes with the pages names each time we switch a page the color will switch to the new one.
     &__link {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         display: flex;
         align-items: center;
         padding: 0 2rem;
         box-shadow: none;
         transition: all 0.4s;
-        border-left: 1px solid #1777b6;
+        border-left: 1px solid var(--border-color-2);
 
         &:last-child {
-            border-right: 1px solid #1777b6;
+            border-right: 1px solid var(--border-color-2);
         }
 
         &:link,
@@ -34,7 +38,7 @@
 
         &:hover,
         &:active {
-            box-shadow: 0 -5rem 1rem rgba(#046db3, 90%) inset;
+            box-shadow: 0 -5rem 1rem var(--box-shadow-color-1) inset;
         }
     }
 
@@ -44,9 +48,10 @@
         align-items: center;
         width: auto;
         padding: 0 3rem 0 3rem;
-        border-right: 2px solid #1777b6;
-        border-bottom: 2px solid #1777b6;
-        box-shadow: -0.6rem -0.6rem 1rem rgba(#046db3, 0.6) inset, 0.5rem 0.5rem 1rem rgba(#046db3, 0.6) inset;
+        border-right: 2px solid var(--border-color-3);
+        border-bottom: 2px solid var(--border-color-3);
+        box-shadow: -0.6rem -0.6rem 1rem var(--box-shadow-color-1) inset,
+            0.5rem 0.5rem 1rem var(--box-shadow-color-1) inset;
         transform: translateX(-0.8rem) skewX(-25deg);
         P {
             transform: translateX(-0.8rem) skewX(25deg);
@@ -64,10 +69,27 @@
             width: 0.5rem;
             height: 0.5rem;
             transform: translateX(-0.7rem) skewX(-30deg);
-            background-color: #1777b6;
+            background-color: var(--border-color-2);
             &:not(:last-child) {
                 margin-right: 0.3rem;
             }
+        }
+    }
+
+    // The navbar icon and datetime
+    &__time {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        margin-right: 1rem;
+        &--icon {
+            width: 2rem;
+            height: 2rem;
+            margin-right: 0.8rem;
+            filter: invert(27%) sepia(84%) saturate(1881%) hue-rotate(185deg) brightness(88%) contrast(97%);
+        }
+        &--datetime {
+            font-size: 1.5rem;
         }
     }
 }

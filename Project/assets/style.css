@@ -15,6 +15,17 @@ $breakpoint argument choices:
 
 ORDER: BASE + typography > general layout + grid > page layout > components
 */
+:root {
+  --bg-color-1: #041c4a;
+  --bg-color-2: #042a6b;
+  --header-bg-color: #092b60;
+  --border-color-1: #0f3473;
+  --border-color-2: #1777b6;
+  --border-color-3: #4498d0;
+  --hover-color-1: #1a7fc3;
+  --box-shadow-color-1: rgb(4 109 179 / 60%);
+  --text-color-1: #fff; }
+
 *,
 *::after,
 *::before {
@@ -24,6 +35,7 @@ ORDER: BASE + typography > general layout + grid > page layout > components
 
 html {
   font-family: "Nunito", sans-serif;
+  color: var(--text-color-1);
   font-size: 62.5%; }
   @media only screen and (max-width: 75em) {
     html {
@@ -62,38 +74,84 @@ body {
 .heading-4 {
   font-size: 1.9rem; }
 
+.center_items_vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.fill-parent-div {
+  width: 100%;
+  height: 100%; }
+
+.card {
+  background: -webkit-linear-gradient(0deg, var(--border-color-3) 5%, var(--border-color-1) 15%, var(--border-color-1) 50%, var(--border-color-1) 85%, var(--border-color-3) 95%), -webkit-linear-gradient(0deg, var(--border-color-3) 5%, var(--border-color-1) 15%, var(--border-color-1) 50%, var(--border-color-1) 85%, var(--border-color-3) 95%), -webkit-linear-gradient(90deg, var(--border-color-3) 5%, var(--border-color-1) 15%, var(--border-color-1) 50%, var(--border-color-1) 85%, var(--border-color-3) 95%), -webkit-linear-gradient(90deg, var(--border-color-3) 5%, var(--border-color-1) 15%, var(--border-color-1) 50%, var(--border-color-1) 85%, var(--border-color-3) 95%);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 100% 3px, 100% 3px, 3px 100%, 3px 100%;
+  background-position: 0px 0px, 0px 100%, 0px 0px, 100% 0px;
+  border-radius: 3px;
+  height: 100%;
+  width: 100%; }
+
+.tab {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  color: #0778c0; }
+  .tab:last-of-type {
+    border: none !important;
+    border-radius: 0 !important; }
+
+.tab--selected {
+  color: #fff !important; }
+  .tab--selected:hover {
+    background-color: transparent !important; }
+
+.tab--selected,
+.tab:last-of-type.tab--selected {
+  border: none !important;
+  border-radius: 0 !important; }
+
+.tab-content,
+.tab-parent {
+  height: 100%; }
+
+.tab-content {
+  min-height: 0; }
+
 .navbar {
-  background-color: #092b60;
-  border-bottom: 2px solid #0f3473;
+  background-color: var(--header-bg-color);
+  border-bottom: 2px solid var(--border-color-1);
   display: flex;
   color: #fff; }
   .navbar__item {
     transform: skewX(-25deg); }
     .navbar__item P {
       transform: skewX(25deg); }
+  .navbar__links {
+    display: flex; }
   .navbar__link {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     display: flex;
     align-items: center;
     padding: 0 2rem;
     box-shadow: none;
     transition: all 0.4s;
-    border-left: 1px solid #1777b6; }
+    border-left: 1px solid var(--border-color-2); }
     .navbar__link:last-child {
-      border-right: 1px solid #1777b6; }
+      border-right: 1px solid var(--border-color-2); }
     .navbar__link:link, .navbar__link:visited {
       color: #fff;
       text-decoration: none; }
     .navbar__link:hover, .navbar__link:active {
-      box-shadow: 0 -5rem 1rem #046db3 inset; }
+      box-shadow: 0 -5rem 1rem var(--box-shadow-color-1) inset; }
   .navbar__header {
     display: flex;
     align-items: center;
     width: auto;
     padding: 0 3rem 0 3rem;
-    border-right: 2px solid #1777b6;
-    border-bottom: 2px solid #1777b6;
-    box-shadow: -0.6rem -0.6rem 1rem rgba(4, 109, 179, 0.6) inset, 0.5rem 0.5rem 1rem rgba(4, 109, 179, 0.6) inset;
+    border-right: 2px solid var(--border-color-3);
+    border-bottom: 2px solid var(--border-color-3);
+    box-shadow: -0.6rem -0.6rem 1rem var(--box-shadow-color-1) inset, 0.5rem 0.5rem 1rem var(--box-shadow-color-1) inset;
     transform: translateX(-0.8rem) skewX(-25deg); }
     .navbar__header P {
       transform: translateX(-0.8rem) skewX(25deg); }
@@ -107,11 +165,73 @@ body {
       width: 0.5rem;
       height: 0.5rem;
       transform: translateX(-0.7rem) skewX(-30deg);
-      background-color: #1777b6; }
+      background-color: var(--border-color-2); }
       .navbar__icons-container div:not(:last-child) {
         margin-right: 0.3rem; }
+  .navbar__time {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 1rem; }
+    .navbar__time--icon {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 0.8rem;
+      filter: invert(27%) sepia(84%) saturate(1881%) hue-rotate(185deg) brightness(88%) contrast(97%); }
+    .navbar__time--datetime {
+      font-size: 1.5rem; }
 
 .sales {
-  background: radial-gradient(#042a6b, #041c4a);
+  background: radial-gradient(var(--bg-color-2), var(--bg-color-1));
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  padding: 1rem;
+  padding-bottom: 2rem;
+  display: grid;
+  grid-template-rows: repeat(16, 1fr);
+  grid-template-columns: repeat(16, 1fr);
+  grid-gap: 2rem; }
+  .sales__kpis {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    column-gap: 14rem;
+    margin-left: 14rem;
+    margin-right: 14rem;
+    justify-content: space-around;
+    align-items: center; }
+    .sales__kpis-item {
+      font-size: 1.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2rem;
+      text-transform: capitalize;
+      border: none;
+      border-radius: 0;
+      padding: 1.5rem;
+      margin: 0.25rem 0;
+      transition: all 0.2s;
+      cursor: pointer;
+      width: 97%;
+      background-color: transparent;
+      color: var(--text-color-1); }
+      .sales__kpis-item p:not(:last-child) {
+        margin-bottom: 0.5rem; }
+      .sales__kpis-item:hover {
+        background-color: var(--hover-color-1); }
+      .sales__kpis-item--active {
+        background-color: var(--hover-color-1); }
+  .sales__counties {
+    grid-column: 1 / 12;
+    grid-row: 2 / 11; }
+  .sales__categories {
+    grid-column: 12 / -1;
+    grid-row: 2 / -1; }
+    .sales__categories-item {
+      height: 100%;
+      width: 100%; }
+  .sales__expense-overview {
+    grid-column: 1 / 5;
+    grid-row: 11 / -1; }
+  .sales__overview {
+    grid-column: 5 / 12;
+    grid-row: 11 / -1; }

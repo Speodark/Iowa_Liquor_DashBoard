@@ -1,0 +1,32 @@
+.tab {
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    color: #0778c0;
+    &:last-of-type {
+        border: none !important;
+        border-radius: 0 !important;
+    }
+}
+
+.tab--selected {
+    color: #fff !important;
+    &:hover {
+        background-color: transparent !important;
+    }
+}
+
+.tab--selected,
+.tab:last-of-type.tab--selected {
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+.tab-content,
+.tab-parent {
+    height: 100%;
+}
+
+.tab-content {
+    min-height: 0;
+}

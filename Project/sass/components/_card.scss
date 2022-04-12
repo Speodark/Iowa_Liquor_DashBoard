@@ -1,0 +1,31 @@
+.card {
+    background: -webkit-linear-gradient(
+            0deg,
+            var(--border-color-3) 5%,
+            var(--border-color-1) 15%,
+            var(--border-color-1) 50%,
+            var(--border-color-1) 85%,
+            var(--border-color-3) 95%
+        ),
+        -webkit-linear-gradient(0deg, var(--border-color-3) 5%, var(--border-color-1) 15%, var(--border-color-1) 50%, var(
+                        --border-color-1
+                    )
+                    85%, var(--border-color-3) 95%),
+        -webkit-linear-gradient(90deg, var(--border-color-3) 5%, var(--border-color-1) 15%, var(--border-color-1) 50%, var(
+                        --border-color-1
+                    )
+                    85%, var(--border-color-3) 95%),
+        -webkit-linear-gradient(90deg, var(--border-color-3) 5%, var(--border-color-1) 15%, var(--border-color-1) 50%, var(
+                        --border-color-1
+                    )
+                    85%, var(--border-color-3) 95%);
+
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+    background-size: 100% 3px, 100% 3px, 3px 100%, 3px 100%;
+    background-position: 0px 0px, 0px 100%, 0px 0px, 100% 0px;
+    border-radius: 3px;
+
+    // Makes sure the card doesn't overflow from its position on the grid
+    height: 100%;
+    width: 100%;
+}

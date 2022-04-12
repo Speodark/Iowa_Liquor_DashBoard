@@ -1,0 +1,63 @@
+
+SELECT 
+	SUM(revenue-cost) AS total_profit,
+	SUM(revenue) AS total_revenue,
+	SUM(cost) AS total_cost
+from 
+(
+	SELECT 
+	sales.bottle_id, 
+	sales.bottles_sold,
+	bottles.bottle_cost,
+	bottles.bottle_retail_price,
+	ROUND((sales.bottles_sold*bottles.bottle_retail_price)::NUMERIC,2) AS revenue,
+	ROUND((sales.bottles_sold*bottles.bottle_cost)::NUMERIC,2) AS cost
+	FROM 
+		sales
+	inner join bottles ON
+		sales.bottle_id = bottles.bottle_id
+	ORDER BY sales.sale_id
+	LIMIT 10000
+) AS bottles_profit
+-- REVENUE
+SELECT 
+	SUM(revenue) AS total_revenue
+from 
+(
+	SELECT 
+	ROUND((sales.bottles_sold*bottles.bottle_retail_price)::NUMERIC,2) AS revenue,
+	ROUND((sales.bottles_sold*bottles.bottle_cost)::NUMERIC,2) AS cost
+	FROM 
+		sales
+	inner join bottles ON
+		sales.bottle_id = bottles.bottle_id
+	LIMIT 10000
+) AS bottles_profit
+
+-- COST
+SELECT 
+	SUM(cost) AS cost
+from 
+(
+	SELECT 
+	ROUND((sales.bottles_sold*bottles.bottle_cost)::NUMERIC,2) AS cost
+	FROM 
+		sales
+	inner join bottles ON
+		sales.bottle_id = bottles.bottle_id
+	LIMIT 10000
+) AS bottles_profit
+
+-- Bottles
+SELECT 
+	SUM(bottles_sold) AS bottles_sold
+from 
+(
+	SELECT 
+		sales.bottles_sold
+	FROM 
+		sales
+	ORDER BY sales.sale_id
+	LIMIT 10000
+) AS bottles_sold
+

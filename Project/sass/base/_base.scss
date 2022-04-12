@@ -12,6 +12,7 @@ $font-display: "Josefin Sans", sans-serif;
 
 html {
     font-family: $font-primary;
+    color: var(--text-color-1);
     // This defines what 1rem is
     font-size: 62.5%; // 1 rem = 10px/16px = 62.5%
 

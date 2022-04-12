@@ -1,0 +1,11 @@
+.xtick>* {
+  fill: #fff !important;
+}
+
+.ytick>* {
+  fill: #fff !important;
+}
+
+.legendtext {
+  fill: #fff !important;
+}

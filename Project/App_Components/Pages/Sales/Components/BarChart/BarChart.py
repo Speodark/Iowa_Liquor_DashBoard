@@ -1,10 +1,8 @@
 import plotly.express as px
-from DB.Select import getCategoriesData
 
 
-def HBarChart(filters=None):
+def HBarChart(df=None, filters=None):
     filters = list((map(lambda x: x.lower(), filters)))
-    df = getCategoriesData()
     mask = df["names"].isin(filters)
     x_labels = []
     for label in df[mask]["category_name"].drop_duplicates():

@@ -40,6 +40,9 @@
         &:active {
             box-shadow: 0 -5rem 1rem var(--box-shadow-color-1) inset;
         }
+        &--active {
+            box-shadow: 0 -5rem 1rem var(--box-shadow-color-1) inset;
+        }
     }
 
     // The header is the name of the app which won't change through out all the pages.

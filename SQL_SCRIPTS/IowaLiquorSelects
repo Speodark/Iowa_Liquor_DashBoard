@@ -1,0 +1,228 @@
+``
+SELECT 
+	SUM(revenue-cost) AS total_profit,
+	SUM(revenue) AS total_revenue,
+	SUM(cost) AS total_cost
+from 
+(
+	SELECT 
+	sales.bottle_id, 
+	sales.bottles_sold,
+	bottles.bottle_cost,
+	bottles.bottle_retail_price,
+	ROUND((sales.bottles_sold*bottles.bottle_retail_price)::NUMERIC,2) AS revenue,
+	ROUND((sales.bottles_sold*bottles.bottle_cost)::NUMERIC,2) AS cost
+	FROM 
+		sales
+	inner join bottles ON
+		sales.bottle_id = bottles.bottle_id
+	ORDER BY sales.sale_id
+	LIMIT 10000
+) AS bottles_profit
+-- REVENUE
+SELECT 
+	SUM(revenue) AS total_revenue
+from 
+(
+	SELECT 
+	ROUND((sales.bottles_sold*bottles.bottle_retail_price)::NUMERIC,2) AS revenue,
+	ROUND((sales.bottles_sold*bottles.bottle_cost)::NUMERIC,2) AS cost
+	FROM 
+		sales
+	inner join bottles ON
+		sales.bottle_id = bottles.bottle_id
+	LIMIT 10000
+) AS bottles_profit
+
+-- COST
+SELECT 
+	SUM(cost) AS cost
+from 
+(
+	SELECT 
+	ROUND((sales.bottles_sold*bottles.bottle_cost)::NUMERIC,2) AS cost
+	FROM 
+		sales
+	inner join bottles ON
+		sales.bottle_id = bottles.bottle_id
+	LIMIT 10000
+) AS bottles_profit
+
+-- Bottles
+SELECT 
+	SUM(bottles_sold) AS bottles_sold
+from 
+(
+	SELECT 
+		sales.bottles_sold
+	FROM 
+		sales
+	ORDER BY sales.sale_id
+	LIMIT 10000
+) AS bottles_sold
+
+
+-- Vendors
+SELECT
+	vendor_name,
+	revenue,
+	sales,
+	cost,
+	bottles,
+	(revenue-cost) AS profit
+FROM
+(
+	SELECT 
+		vendors.vendor_name, 
+		SUM(ROUND((sales_limited.bottles_sold*bottles.bottle_retail_price)::NUMERIC,2)) AS revenue,
+		count(sales_limited.sale_id) AS sales,
+		SUM(ROUND((sales_limited.bottles_sold*bottles.bottle_cost)::NUMERIC,2)) AS cost,
+		SUM(sales_limited.bottles_sold) AS bottles
+	FROM 
+		(
+			SELECT 
+				* 
+			FROM 
+				sales 
+			ORDER BY sales.sale_id 
+			LIMIT 10000
+		) AS sales_limited
+	LEFT JOIN vendors ON
+		sales_limited.vendor_id = vendors.vendor_id
+	INNER JOIN bottles ON
+		sales_limited.bottle_id = bottles.bottle_id
+	GROUP BY 
+		vendors.vendor_name
+	ORDER BY 
+		revenue
+	LIMIT 5
+) AS categories_data
+-- Stores
+SELECT
+	store_name,
+	revenue,
+	sales,
+	cost,
+	bottles,
+	(revenue-cost) AS profit
+FROM
+(
+	SELECT 
+		stores.store_name, 
+		SUM(ROUND((sales_limited.bottles_sold*bottles.bottle_retail_price)::NUMERIC,2)) AS revenue,
+		count(sales_limited.sale_id) AS sales,
+		SUM(ROUND((sales_limited.bottles_sold*bottles.bottle_cost)::NUMERIC,2)) AS cost,
+		SUM(sales_limited.bottles_sold) AS bottles
+	FROM 
+		(
+			SELECT 
+				* 
+			FROM 
+				sales 
+			ORDER BY sales.sale_id 
+			LIMIT 10000
+		) AS sales_limited
+	LEFT JOIN stores ON
+		sales_limited.store_id = stores.store_id
+	INNER JOIN bottles ON
+		sales_limited.bottle_id = bottles.bottle_id
+	GROUP BY 
+		stores.store_name
+	ORDER BY 
+		revenue
+	LIMIT 5
+) AS categories_data
+
+-- average Amount sold per month for all years
+SELECT
+	"Month",
+	ROUND(avg("bottles_sold"),0) AS "bottles_sold",
+	ROUND(avg("sales"),0) AS "sales"
+FROM
+(
+	SELECT
+		EXTRACT(YEAR FROM sale_date) AS "year",
+		TO_CHAR(sale_date,'month') AS "Month",
+		SUM(bottles_sold) AS "bottles_sold",
+		COUNT(sale_id) AS "sales"
+	FROM 
+	(
+		SELECT 
+			* 
+		FROM 
+			sales 
+		ORDER BY sales.sale_id 
+		LIMIT 10000
+	) AS sales_limited
+	GROUP BY "year", "Month"
+	ORDER BY "year", "Month"
+) AS bottles_sold_by_month
+GROUP BY "Month"
+
+-- sum of bottles sold per year
+SELECT
+	EXTRACT(YEAR FROM sale_date) AS "year",
+	SUM(bottles_sold) AS "bottles_sold",
+	COUNT(sale_id) AS "sales"
+FROM 
+(
+	SELECT 
+		* 
+	FROM 
+		sales 
+	ORDER BY sales.sale_id 
+	LIMIT 10000
+) AS sales_limited
+GROUP BY "year"
+ORDER BY "year"
+
+-- average of bottles sold and sales by dow
+SELECT
+	count(extract(dow from inserted_at) = 1 or null) as monday,
+    count(extract(dow from inserted_at) = 2 or null) as tuesday,
+    count(extract(dow from inserted_at) = 3 or null) as wednesday,
+    count(extract(dow from inserted_at) = 4 or null) as thursday,
+    count(extract(dow from inserted_at) = 5 or null) as friday,
+	SUM(bottles_sold) AS "bottles_sold",
+	COUNT(sale_id) AS "sales"
+FROM 
+(
+	SELECT 
+		* 
+	FROM 
+		sales 
+	ORDER BY sales.sale_id 
+	LIMIT 10000
+) AS sales_limited
+GROUP BY "year"
+ORDER BY "year"
+
+-- average Revenue and cost per month for all years
+WITH sales_limited(sale_id, sale_date, bottle_id, bottles_sold, store_id, category_id, vendor_id)
+AS
+(
+	SELECT  
+		* 
+	FROM 
+		sales 
+	ORDER BY sales.sale_id 
+	LIMIT 10000
+)
+SELECT
+	"Month",
+	ROUND(avg(revenue),0) AS revenue,
+	ROUND(avg(cost),0) AS cost
+FROM
+(
+	SELECT
+		EXTRACT(YEAR FROM sale_date) AS "year",
+		TO_CHAR(sale_date,'month') AS "Month",
+		SUM(ROUND((sales_limited.bottles_sold*bottles.bottle_retail_price)::NUMERIC,2)) AS revenue,
+		SUM(ROUND((sales_limited.bottles_sold*bottles.bottle_cost)::NUMERIC,2)) AS cost
+	FROM sales_limited
+	inner join bottles ON
+		sales_limited.bottle_id = bottles.bottle_id
+	GROUP BY "year", "Month"
+	ORDER BY "year", "Month"
+) AS profit_month
+GROUP BY "Month"

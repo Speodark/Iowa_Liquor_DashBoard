@@ -1,3 +1,4 @@
+import plotly.express as px
 from dash import html, dcc
 from datetime import datetime
 from pytz import timezone
@@ -27,16 +28,19 @@ def navbar():
                 className="navbar__links",
                 children=[
                     dcc.Link(
-                        className="navbar__item navbar__link",
+                        id={"type": "navlink", "index": "Sales"},
+                        className="navbar__item navbar__link navbar__link--active",
                         children=html.P("Sales"),
                         href="/Sales"
                     ),
                     dcc.Link(
+                        id={"type": "navlink", "index": "Inventory"},
                         className="navbar__item navbar__link",
                         children=html.P("Inventory"),
                         href="/Inventory"
                     ),
                     dcc.Link(
+                        id={"type": "navlink", "index": "Page"},
                         className="navbar__item navbar__link",
                         children=html.P("Page"),
                         href="/Page"

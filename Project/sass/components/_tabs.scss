@@ -7,6 +7,9 @@
         border: none !important;
         border-radius: 0 !important;
     }
+    &>span {
+        font-size: 1.6rem;
+    }
 }
 
 .tab--selected {

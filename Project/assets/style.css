@@ -91,6 +91,11 @@ body {
   border-radius: 3px;
   height: 100%;
   width: 100%; }
+  .card__header {
+    font-size: 1.6rem;
+    padding: 1rem 0 0;
+    display: flex;
+    align-items: center; }
 
 .tab {
   background-color: transparent !important;
@@ -100,6 +105,8 @@ body {
   .tab:last-of-type {
     border: none !important;
     border-radius: 0 !important; }
+  .tab > span {
+    font-size: 1.6rem; }
 
 .tab--selected {
   color: #fff !important; }
@@ -227,13 +234,19 @@ body {
     grid-row: 2 / 11; }
   .sales__categories {
     grid-column: 12 / -1;
-    grid-row: 2 / -1; }
+    grid-row: 2 / 11; }
     .sales__categories-item {
       height: 100%;
       width: 100%; }
   .sales__expense-overview {
-    grid-column: 1 / 5;
-    grid-row: 11 / -1; }
+    grid-column: 1 / 9;
+    grid-row: 11 / -1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem; }
   .sales__overview {
-    grid-column: 5 / 12;
-    grid-row: 11 / -1; }
+    grid-column: 9 / -1;
+    grid-row: 11 / -1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem; }

@@ -90,20 +90,28 @@ def salesPage():
             ),
             Card(
                 className="sales__expense-overview",
-                children=dcc.Graph(
-                    id={'type': "sales_expense-overview--graph",
-                        "index": "sales__expense-overview"},
-                    figure=AreaChart(revenueAndCostPerMonth()),
-                    className="fill-parent-div"
+                header="Sales Expenses",
+                children=html.Div(
+                    children=dcc.Graph(
+                        id={'type': "sales_expense-overview--graph",
+                            "index": "sales__expense-overview"},
+                        figure=AreaChart(revenueAndCostPerMonth()),
+                        className="fill-parent-div"
+                    ),
+                    style={"width": "100%", "height": "100%", "min-height": 0}
                 )
             ),
             Card(
                 className="sales__overview",
-                children=dcc.Graph(
-                    id={'type': "sales_overview_graph",
-                        "index": "sales__overview"},
-                    figure=LineAndBarChart(salesAndBottlesPerMonth()),
-                    className="fill-parent-div"
+                header="Sales Overview",
+                children=html.Div(
+                    children=dcc.Graph(
+                        id={'type': "sales_overview_graph",
+                            "index": "sales__overview"},
+                        figure=LineAndBarChart(salesAndBottlesPerMonth()),
+                        className="fill-parent-div"
+                    ),
+                    style={"width": "100%", "height": "100%", "min-height": 0}
                 )
             ),
             Card(

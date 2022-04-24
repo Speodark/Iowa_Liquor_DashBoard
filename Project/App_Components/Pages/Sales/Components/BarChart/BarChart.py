@@ -3,11 +3,11 @@ import plotly.express as px
 
 def HBarChart(df=None, filters=None):
     colors = {
-        "revenue": "#0C3B5D",
-        "sales": "#3EC1CD",
-        "cost": "#EF3A4C",
-        "bottles": "#FCB94D",
-        "profit": "#EF3A4C"
+        "revenue": "#37AAFA",
+        "sales": "#B79659",
+        "cost": "#E17A51",
+        "bottles": "#6C5197",
+        "profit": "#22D69B"
     }
     filters = list((map(lambda x: x.lower(), filters)))
     mask = df["names"].isin(filters)

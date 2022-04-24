@@ -1,13 +1,8 @@
 from dash import html, dcc
-from matplotlib.axis import YAxis
-import plotly.express as px
 from App_Components.Components.Card import Card
 from App_Components.Pages.Sales.Components.KPIS.KPIS import generate_kpis
 from DB.Select import getCategoriesData
 import dash
-from MainDash import app
-from dash import Input, Output, State, MATCH, ALL
-from dash.exceptions import PreventUpdate
 from App_Components.Pages.Sales.Components.BarChart.BarChart import HBarChart
 from App_Components.Pages.Sales.Components.BarChart.CallBacks import *
 from App_Components.Pages.Sales.Components.LineChart.LineChart import LineAndBarChart

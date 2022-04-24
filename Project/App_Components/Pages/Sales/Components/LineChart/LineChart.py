@@ -2,12 +2,22 @@ import plotly.express as px
 
 
 def LineAndBarChart(df=None):
+    colors = {
+        "sales": "#B79659",
+        "bottles": "#6C5197",
+    }
     fig = px.line(
         df,
         x="month",
-        y="sales",
+        y=["sales"],
+        color_discrete_map=colors
     )
-    fig.add_bar(x=df["month"], y=df["bottles_sold"])
+    fig.add_bar(
+        x=df["month"], 
+        y=df["bottles"], 
+        name="bottles",
+        marker=dict(color=colors["bottles"])
+    )
     fig.update_layout(
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",

@@ -2,11 +2,16 @@ import plotly.express as px
 
 
 def AreaChart(df=None):
+    colors = {
+        "revenue": "#37AAFA",
+        "cost": "#E17A51",
+    }
     fig = px.area(
         df,
         x="month",
         y="value",
         color="category",
+        color_discrete_map=colors
     )
     fig.update_layout(
         plot_bgcolor="rgba(0,0,0,0)",

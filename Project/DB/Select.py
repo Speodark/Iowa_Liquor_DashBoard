@@ -270,7 +270,7 @@ def salesAndBottlesPerMonth():
     query = f"""
         SELECT
             "month",
-            ROUND(avg("bottles_sold"),0) AS "bottles_sold",
+            ROUND(avg("bottles_sold"),0) AS "bottles",
             ROUND(avg("sales"),0) AS "sales"
         FROM
         (
